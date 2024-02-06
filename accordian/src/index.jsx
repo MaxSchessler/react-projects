@@ -49,7 +49,7 @@ export default function Accordian() {
                 selected === dataItem.id ? (
                   <div className="content">{dataItem.answer}</div>
                 ) : (
-                  <div className="content">+</div>
+                  null
                 )
               }
             </div>
@@ -67,3 +67,4 @@ export default function Accordian() {
     </div>
   );
 }
+
