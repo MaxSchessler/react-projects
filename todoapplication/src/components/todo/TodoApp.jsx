@@ -4,6 +4,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import LoginComponent from "./LoginComponent";
 import WelcomeComponent from "./WelcomeComponent";
 import "../../styles/TodoApp.css"
+import ListTodosComponent from "./ListTodosComponent";
 
 const TodoApp = () => {
 
@@ -14,6 +15,9 @@ const TodoApp = () => {
                     <Route path="/" element={<LoginComponent/>}/>
                     <Route path={"/login"} element={<LoginComponent/>}/>
                     <Route path={"/welcome/:username"} element={<WelcomeComponent/>}/>
+                    <Route path={"/todos/:username"} element={<ListTodosComponent/>}/>
+
+                    {/* Error comp accepts all other url paths */}
                     <Route path="/*" element={<Error/>}/>
                 </Routes>
 
