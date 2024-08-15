@@ -5,11 +5,14 @@ import LoginComponent from "./LoginComponent";
 import WelcomeComponent from "./WelcomeComponent";
 import "../../styles/TodoApp.css"
 import ListTodosComponent from "./ListTodosComponent";
+import HeaderComponent from "./HeaderComponent";
+import FooterComponent from "./FooterComponent";
 
 const TodoApp = () => {
 
     return (
         <div className="todo-app">
+            {/*<HeaderComponent/>*/}
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<LoginComponent/>}/>
@@ -22,6 +25,7 @@ const TodoApp = () => {
                 </Routes>
 
             </BrowserRouter>
+            {/*<FooterComponent/>*/}
         </div>
     )
 }

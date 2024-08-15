@@ -1,57 +1,60 @@
-import React, { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import "../../styles/TodoApp.css";
 
-const LoginComponent = () => {
+const Login = (props) => {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [usernameError, setUsernameError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-    const [showErrorMessage, setShowErrorMessage] = useState(false);
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
-    function handleSubmit() {
-        console.log(`Username: ${username}\nPassword: ${password}`);
-
+    const onButtonClick = () => {
         if (username === "maxschessler" && password === "password") {
-            // show success div
-            setShowSuccessMessage(true);
-            setShowErrorMessage(false);
-            navigate("/welcome/maxschessler");
+            navigate("/welcome/" + username);
         } else {
-            // show error div
-            setShowSuccessMessage(false);
-            setShowErrorMessage(true);
+            if (username !== "maxschessler") {
+                setUsernameError(`${username} is not correct.`);
+            }
+            if (password !== "password") {
+                setPasswordError("Password is not correct");
+            }
         }
     }
 
     return (
-        <div className="login">
-            <h1>Time to login!</h1>
-            {showSuccessMessage ? <div className="successMessage">Authenticated Successfully</div> : null}
-            {showErrorMessage ? <div className="loginContainer">Authentication Failed.</div>: null}
-            <div className="login-form">
-                <div>
-                    <label htmlFor="username" className="login-label">Username</label>
-                    <input type="text" name="username" className="login-input"
-                           value={username} onChange={(e) => setUsername(e.target.value)}/>
-                </div>
-                <div>
-
-                    <label htmlFor="password" className="login-label">Password</label>
-                    <input type="password" name="password" className="login-input"
-                           value={password} onChange={(e) => setPassword(e.target.value)}/>
-                </div>
-                <div>
-                    <button type="submit" className="login-button" onClick={
-                        () => {
-                            handleSubmit();
-                        }
-                    }>Login
-                    </button>
-                </div>
+        <div className={'mainContainer'}>
+            <div className={'titleContainer'}>
+                <div>Login</div>
+            </div>
+            <br />
+            <div className={'inputContainer'}>
+                <input
+                    value={username}
+                    placeholder="Enter your username here"
+                    onChange={(ev) => setUsername(ev.target.value)}
+                    className={'inputBox'}
+                />
+                <label className="errorLabel">{usernameError}</label>
+            </div>
+            <br />
+            <div className={'inputContainer'}>
+                <input
+                    value={password}
+                    type={"password"}
+                    placeholder="Enter your password here"
+                    onChange={(ev) => setPassword(ev.target.value)}
+                    className={'inputBox'}
+                />
+                <label className="errorLabel">{passwordError}</label>
+            </div>
+            <br />
+            <div className={'inputContainer'}>
+                <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Log in'} />
             </div>
         </div>
     )
 }
 
-export default LoginComponent;
+export default Login
