@@ -15,10 +15,14 @@ const Login = (props) => {
             navigate("/welcome/" + username);
         } else {
             if (username !== "maxschessler") {
-                setUsernameError(`${username} is not correct.`);
+                setUsernameError(`${username.length > 0 ? `'${username}'` : "Username"} is not correct.`);
+            } else {
+                setUsernameError("");
             }
             if (password !== "password") {
                 setPasswordError("Password is not correct");
+            } else {
+                setPasswordError("");
             }
         }
     }
