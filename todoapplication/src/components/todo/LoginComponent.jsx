@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 
 const LoginComponent = () => {
 
@@ -6,6 +7,7 @@ const LoginComponent = () => {
     const [password, setPassword] = useState("");
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [showErrorMessage, setShowErrorMessage] = useState(false);
+    const navigate = useNavigate();
 
     function handleSubmit() {
         console.log(`Username: ${username}\nPassword: ${password}`);
@@ -14,6 +16,7 @@ const LoginComponent = () => {
             // show success div
             setShowSuccessMessage(true);
             setShowErrorMessage(false);
+            navigate("/welcome");
         } else {
             // show error div
             setShowSuccessMessage(false);
