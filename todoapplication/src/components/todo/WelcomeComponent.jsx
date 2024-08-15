@@ -1,9 +1,13 @@
-import React, {use, useState} from "react";
+import React, {} from "react";
+import {useParams} from "react-router-dom";
 
 const WelcomeComponent = () => {
+
+    const {username} = useParams();
+
     return (
         <div>
-            <h2>Welcom</h2>
+            <h1>Welcome {username}!</h1>
         </div>
     );
 }

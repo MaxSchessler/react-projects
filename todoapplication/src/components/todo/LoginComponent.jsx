@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {useNavigate} from "react-router-dom";
 
 const LoginComponent = () => {
@@ -16,7 +16,7 @@ const LoginComponent = () => {
             // show success div
             setShowSuccessMessage(true);
             setShowErrorMessage(false);
-            navigate("/welcome");
+            navigate("/welcome/maxschessler");
         } else {
             // show error div
             setShowSuccessMessage(false);
@@ -26,6 +26,7 @@ const LoginComponent = () => {
 
     return (
         <div className="login">
+            <h1>Time to login!</h1>
             {showSuccessMessage ? <div className="successMessage">Authenticated Successfully</div> : null}
             {showErrorMessage ? <div className="loginContainer">Authentication Failed.</div>: null}
             <div className="login-form">
@@ -48,7 +49,6 @@ const LoginComponent = () => {
                     }>Login
                     </button>
                 </div>
-
             </div>
         </div>
     )
