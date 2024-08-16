@@ -7,18 +7,9 @@ const WelcomeComponent = () => {
     const navigate = useNavigate();
 
     return (
-        <div>
-            <h1>Welcome {username}!</h1>
-            <div
-                style={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-
+        <div className={"container"}>
+            <h1 className={"welcome-header"}>Welcome {username}!</h1>
+            <div>
                 <div
                     onClick={() => {
                         navigate("/todos/" + username);

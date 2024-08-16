@@ -2,17 +2,16 @@ import React from "react";
 
 const HeaderComponent = () => {
     return(
-        <div className={"Header"}>
-            <div style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center"
-            }}>
-                <span>Header</span>
+        <header className={"header"}>
+            <div className={"container"}>
+                <ul className={"navbar-nav"}>
+                    <li className={"nav-item"}>
+                        <a href={"https://www.in28minutes.com"} className={"nav-link"} target={"_blank"}>in28minutes</a>
+                    </li>
+                </ul>
+
             </div>
-            <br/>
-        </div>
+        </header>
     );
 }
 

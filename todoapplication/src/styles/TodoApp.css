@@ -144,6 +144,6 @@ input[type='button'] {
     height: 40px;
 }
 
-.Header {
-
+.welcome-header {
+    text-align: center;
 }
