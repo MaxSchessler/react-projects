@@ -2,17 +2,11 @@ import React from "react";
 
 const FooterComponent = () => {
     return(
-        <div className={"Footer"}>
-            <div style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-            }}
-                 >
-                <span>Footer</span>
+        <footer className={"footer"}>
+            <div className="container">
+                Your Footer
             </div>
-        </div>
+        </footer>
     );
 }
 

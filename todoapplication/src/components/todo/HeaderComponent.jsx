@@ -2,7 +2,7 @@ import React from "react";
 
 const HeaderComponent = () => {
     return(
-        <div className={"header"}>
+        <div className={"Header"}>
             <div style={{
                 display: "flex",
                 flexDirection: "row",

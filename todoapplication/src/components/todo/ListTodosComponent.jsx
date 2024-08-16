@@ -19,7 +19,7 @@ const ListTodosComponent = () => {
 
 
     return (
-        <div>
+        <div className={"container"}>
             <div style={{
                 display: "flex",
                 flexDirection: "row",
@@ -51,7 +51,7 @@ const ListTodosComponent = () => {
                 </div>
             </div>
 
-            <table>
+            <table className={"table"}>
                 <thead>
                 <tr>
                     <th>ID</th>

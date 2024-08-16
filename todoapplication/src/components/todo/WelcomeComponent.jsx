@@ -21,7 +21,7 @@ const WelcomeComponent = () => {
 
                 <div
                     onClick={() => {
-                        navigate("/todos")
+                        navigate("/todos/" + username);
                     }}
                     style={{
                         display: "flex",
