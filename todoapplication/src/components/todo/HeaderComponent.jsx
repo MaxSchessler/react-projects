@@ -3,7 +3,15 @@ import React from "react";
 const HeaderComponent = () => {
     return(
         <div className={"header"}>
-            Header <hr/>
+            <div style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center"
+            }}>
+                <span>Header</span>
+            </div>
+            <br/>
         </div>
     );
 }

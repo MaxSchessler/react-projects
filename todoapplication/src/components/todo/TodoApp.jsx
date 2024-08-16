@@ -12,7 +12,7 @@ const TodoApp = () => {
 
     return (
         <div className="todo-app">
-            {/*<HeaderComponent/>*/}
+            <HeaderComponent/>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<LoginComponent/>}/>
@@ -25,7 +25,7 @@ const TodoApp = () => {
                 </Routes>
 
             </BrowserRouter>
-            {/*<FooterComponent/>*/}
+            <FooterComponent/>
         </div>
     )
 }
