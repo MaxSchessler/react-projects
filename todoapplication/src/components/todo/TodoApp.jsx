@@ -12,20 +12,21 @@ const TodoApp = () => {
 
     return (
         <div className="todo-app">
-            <HeaderComponent/>
             <BrowserRouter>
+                <HeaderComponent/>
                 <Routes>
                     <Route path="/" element={<LoginComponent/>}/>
                     <Route path={"/login"} element={<LoginComponent/>}/>
+                    <Route path={"/welcome"} element={<LoginComponent/>}/>
                     <Route path={"/welcome/:username"} element={<WelcomeComponent/>}/>
                     <Route path={"/todos/:username"} element={<ListTodosComponent/>}/>
 
                     {/* Error comp accepts all other url paths */}
                     <Route path="/*" element={<Error/>}/>
                 </Routes>
-
+                <FooterComponent/>
             </BrowserRouter>
-            <FooterComponent/>
+
         </div>
     )
 }
