@@ -12,7 +12,7 @@ const Login = (props) => {
 
     const onButtonClick = () => {
         if (authContext.login(username, password)) {
-            navigate("/welcome/" + username);
+            navigate("/welcome");
         } else {
             setError('Invalid username or password')
             setError('Invalid username or password')

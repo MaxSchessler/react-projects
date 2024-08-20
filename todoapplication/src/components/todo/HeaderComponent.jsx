@@ -4,9 +4,6 @@ import {Link, useParams} from "react-router-dom";
 import {useAuth} from "./security/AuthorizationContext";
 
 const HeaderComponent = () => {
-    //const auth = useContext(authorizationContext);
-    const {username} = useParams();
-
     const authContext = useAuth();
 
     return (
@@ -21,12 +18,12 @@ const HeaderComponent = () => {
                                 {
                                     authContext.isAuthenticated &&
                                     <li className="nav-item fs-5"><Link className="nav-link"
-                                                                        to={`/welcome/${username}`}>Home</Link></li>
+                                                                        to={`/welcome/`}>Home</Link></li>
                                 }
                                 {
                                     authContext.isAuthenticated &&
                                     <li className="nav-item fs-5"><Link className="nav-link"
-                                                                        to={`/todos/${username}`}>Todos</Link></li>
+                                                                        to={`/todos`}>Todos</Link></li>
                                 }
                             </ul>
                         </div>

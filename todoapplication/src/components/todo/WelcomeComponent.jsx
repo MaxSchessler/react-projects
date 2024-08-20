@@ -3,16 +3,15 @@ import {useParams, useNavigate} from "react-router-dom";
 
 const WelcomeComponent = () => {
 
-    const {username} = useParams();
     const navigate = useNavigate();
 
     return (
         <div className={"container"}>
-            <h1 className={"welcome-header"}>Welcome {username}!</h1>
+            <h1 className={"welcome-header"}>Welcome!</h1>
             <div>
                 <div
                     onClick={() => {
-                        navigate("/todos/" + username);
+                        navigate("/todos");
                     }}
                     style={{
                         display: "flex",

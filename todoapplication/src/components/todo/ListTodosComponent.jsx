@@ -8,7 +8,6 @@ const ListTodosComponent = () => {
     const today = new Date();
     const nextYear = new Date(today.getFullYear() + 1, today.getMonth(), today.getDay());
     const nav = useNavigate();
-    const { username } = useParams();
 
     const todos = [
         {id: 1, description: "Learn JS", done: false, targetDate: nextYear},
@@ -36,7 +35,7 @@ const ListTodosComponent = () => {
                         height: 80,
                         width: 30,
                     }}
-                    onClick={() => nav(`/welcome/${username}`)}
+                    onClick={() => nav(`/welcome`)}
                 >
                     <FontAwesomeIcon icon={faArrowLeftLong} height={32} width={50}/>
                 </div>
@@ -47,7 +46,7 @@ const ListTodosComponent = () => {
                     alignItems: "center",
                     width: "90%",
                 }}>
-                    <h1>{username}'s Todos</h1>
+                    <h1>Todos</h1>
                 </div>
             </div>
 
