@@ -4,12 +4,6 @@ import {useParams, useNavigate} from "react-router-dom";
 const WelcomeComponent = () => {
 
     const {username} = useParams();
-    if (username === undefined || username === "undefined" || username === null) {
-        alert("Not logged in, navigating to login screen.");
-        setTimeout(() => {
-            navigate("/");
-        }, 5000);
-    }
     const navigate = useNavigate();
 
     return (

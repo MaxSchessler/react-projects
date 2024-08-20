@@ -1,29 +1,21 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import "../../styles/TodoApp.css";
+import {authorizationContext, useAuth} from "./security/AuthorizationContext";
 
 const Login = (props) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [usernameError, setUsernameError] = useState('')
-    const [passwordError, setPasswordError] = useState('')
-
+    const [error, setError] = useState('')
     const navigate = useNavigate()
+    const authContext = useAuth();
 
     const onButtonClick = () => {
-        if (username === "maxschessler" && password === "password") {
+        if (authContext.login(username, password)) {
             navigate("/welcome/" + username);
         } else {
-            if (username !== "maxschessler") {
-                setUsernameError(`${username.length > 0 ? `'${username}'` : "Username"} is not correct.`);
-            } else {
-                setUsernameError("");
-            }
-            if (password !== "password") {
-                setPasswordError("Password is not correct");
-            } else {
-                setPasswordError("");
-            }
+            setError('Invalid username or password')
+            setError('Invalid username or password')
         }
     }
 
@@ -32,6 +24,8 @@ const Login = (props) => {
             <div className={'titleContainer'}>
                 <div>Login</div>
             </div>
+            <br/>
+            <label className={'errorLabel'}>{error}</label>
             <br />
             <div className={'inputContainer'}>
                 <input
@@ -40,7 +34,6 @@ const Login = (props) => {
                     onChange={(ev) => setUsername(ev.target.value)}
                     className={'inputBox'}
                 />
-                <label className="errorLabel">{usernameError}</label>
             </div>
             <br />
             <div className={'inputContainer'}>
@@ -51,7 +44,6 @@ const Login = (props) => {
                     onChange={(ev) => setPassword(ev.target.value)}
                     className={'inputBox'}
                 />
-                <label className="errorLabel">{passwordError}</label>
             </div>
             <br />
             <div className={'inputContainer'}>
