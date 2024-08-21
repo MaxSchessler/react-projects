@@ -1,21 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import TodoAPIService from "./API/TodoAPIService";
 
 const ListTodosComponent = () => {
-
-    const today = new Date();
-    const nextYear = new Date(today.getFullYear() + 1, today.getMonth(), today.getDay());
     const nav = useNavigate();
+    const [todos, setTodos] = useState([]);
 
-    const todos = [
-        {id: 1, description: "Learn JS", done: false, targetDate: nextYear},
-        {id: 2, description: "Learn Docker", done: false, targetDate: nextYear},
-        {id: 3, description: "Clean Learn Springboot", done: false, targetDate: nextYear},
-        {id: 4, description: "Learn AWS", done: false, targetDate: nextYear},
-    ]
-
+    useEffect(() => {
+        const api = new TodoAPIService();
+        api.getAllTodos()
+            .then(x => {
+                setTodos(x.data);
+                console.log(x.data);
+            }).catch(e => console.error(e));
+    }, []);
 
     return (
         <div className={"container"}>
@@ -62,13 +62,13 @@ const ListTodosComponent = () => {
                 <tbody>
                 {
                     todos.map(
-                        todo => {
+                        (todo, index) => {
                             return (
-                                <tr>
+                                <tr key={index}>
                                     <td>{todo.id}</td>
                                     <td>{todo.description}</td>
                                     <td>{todo.done ? "YES" : "NO"}</td>
-                                    <td>{todo.targetDate.toDateString()}</td>
+                                    <td>{todo.targetDate}</td>
                                 </tr>
                             )
                         }
