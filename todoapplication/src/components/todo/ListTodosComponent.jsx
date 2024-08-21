@@ -57,6 +57,7 @@ const ListTodosComponent = () => {
                     <th>Description</th>
                     <th>Done</th>
                     <th>Target Date</th>
+                    <th></th>{/*Delete button*/}
                 </tr>
                 </thead>
                 <tbody>
@@ -69,6 +70,10 @@ const ListTodosComponent = () => {
                                     <td>{todo.description}</td>
                                     <td>{todo.done ? "YES" : "NO"}</td>
                                     <td>{todo.targetDate}</td>
+                                    <td>
+                                        {/*<button className={"btn btn-warning"}>Update</button>*/}
+                                        <button className={"btn btn-danger"}>Delete</button>
+                                    </td>
                                 </tr>
                             )
                         }

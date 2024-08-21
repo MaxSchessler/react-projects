@@ -1,12 +1,11 @@
 
-import React, {useContext} from "react";
+import React from "react";
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import LoginComponent from "./LoginComponent";
 import WelcomeComponent from "./WelcomeComponent";
 import "../../styles/TodoApp.css"
 import ListTodosComponent from "./ListTodosComponent";
 import HeaderComponent from "./HeaderComponent";
-import FooterComponent from "./FooterComponent";
 import AuthProvider, {useAuth} from "./security/AuthorizationContext";
 
 function AuthenticatedRoute({children}) {
@@ -35,7 +34,6 @@ const TodoApp = () => {
                         {/* Error comp accepts all other url paths */}
                         <Route path="/*" element={<Error/>}/>
                     </Routes>
-                    <FooterComponent/>
                 </BrowserRouter>
             </AuthProvider>
         </div>
