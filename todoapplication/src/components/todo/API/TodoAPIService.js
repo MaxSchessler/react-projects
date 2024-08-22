@@ -26,4 +26,8 @@ export default class TodoAPIService {
     postNewTodoItem(username, todo) {
         return this.#apiClient.post(`users/${username}/todos/`, todo);
     }
+
+    deleteTodoById(username, id) {
+        return this.#apiClient.delete(`/users/${username}/todos/${id}`);
+    }
 }

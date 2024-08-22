@@ -8,49 +8,67 @@ const ListTodosComponent = () => {
     const nav = useNavigate();
     const [todos, setTodos] = useState([]);
 
+    const [modal, setModal] = useState(false);
+    const [selectedTodo, setSelectedTodo] = useState({});
+
+    function deleteTodo(todo) {
+        const api = new TodoAPIService();
+        api.deleteTodoById("kaci", todo.id)
+            .then(() => {
+                setTodos(todos.filter(t => t.id !== todo.id));
+            }).catch(e => console.error(e));
+    }
+
     useEffect(() => {
         const api = new TodoAPIService();
         api.getAllTodos()
             .then(x => {
                 setTodos(x.data);
-                console.log(x.data);
             }).catch(e => console.error(e));
     }, []);
 
     return (
         <div className={"container"}>
-            <div style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-            }}
-            >
-                <div
-                    style={{
+            <div>
+                <div>
+                    <h1>Todos</h1>
+                    <div style={{
                         display: "flex",
                         flexDirection: "row",
                         justifyContent: "center",
                         alignItems: "center",
-                        height: 80,
-                        width: 30,
-                    }}
-                    onClick={() => nav(`/welcome`)}
-                >
-                    <FontAwesomeIcon icon={faArrowLeftLong} height={32} width={50}/>
-                </div>
-                <div style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: "90%",
-                }}>
-                    <h1>Todos</h1>
+                        position: "absolute",
+                        right: "17%",
+                        top: "17%"
+                    }}>
+                        {
+                            modal
+                                ? <div>
+                            <span
+                                className={"m-2"}
+                            >Delete Todo: {selectedTodo.description}?</span>
+
+
+                                    <button className={"btn btn-danger"} onClick={() => {
+                                        deleteTodo(selectedTodo);
+                                        setModal(false);
+                                    }
+                                    }>Yes
+                                    </button>
+                                    <button className={"btn btn-warning"} onClick={() => {
+                                        setModal(false)
+                                    }}>No
+                                    </button>
+                                </div>
+                                : null
+                        }
+                    </div>
+
                 </div>
             </div>
 
-            <table className={"table"}>
+            <table className={"table"}
+                style={{tableLayout: "auto"}}>
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -65,16 +83,13 @@ const ListTodosComponent = () => {
                     todos.map(
                         (todo, index) => {
                             return (
-                                <tr key={index}>
-                                    <td>{todo.id}</td>
-                                    <td>{todo.description}</td>
-                                    <td>{todo.done ? "YES" : "NO"}</td>
-                                    <td>{todo.targetDate}</td>
-                                    <td>
-                                        {/*<button className={"btn btn-warning"}>Update</button>*/}
-                                        <button className={"btn btn-danger"}>Delete</button>
-                                    </td>
-                                </tr>
+                                <TodoRow
+                                    todo={todo}
+                                    key={index}
+                                    selected={todo}
+                                    setSelected={setSelectedTodo}
+                                    setModal={setModal}
+                                />
                             )
                         }
                     )
@@ -83,6 +98,26 @@ const ListTodosComponent = () => {
             </table>
         </div>
     );
+}
+
+const TodoRow = ({todo, selected, setSelected, setModal}) => {
+
+    return (
+        <tr>
+            <td>{todo.id}</td>
+            <td>{todo.description}</td>
+            <td>{todo.done ? "YES" : "NO"}</td>
+            <td>{todo.targetDate}</td>
+            <td>
+                <button className={"btn btn-danger"} onClick={() => {
+                    setModal(true);
+                    setSelected(selected);
+                    console.log(selected);
+                }}>Delete</button>
+
+            </td>
+        </tr>
+    )
 }
 
 export default ListTodosComponent;
