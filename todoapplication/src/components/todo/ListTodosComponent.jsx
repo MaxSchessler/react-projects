@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import {useNavigate} from "react-router-dom";
 import TodoAPIService from "./API/TodoAPIService";
+import {useAuth} from "./security/AuthorizationContext";
 
 const ListTodosComponent = () => {
     const nav = useNavigate();
     const [todos, setTodos] = useState([]);
-
+    const authContext = useAuth();
+    const [username, setUsername] = useState(authContext.username);
     const [modal, setModal] = useState(false);
     const [selectedTodo, setSelectedTodo] = useState({});
 
@@ -21,7 +23,7 @@ const ListTodosComponent = () => {
 
     useEffect(() => {
         const api = new TodoAPIService();
-        api.getAllTodos()
+        api.getTodosByUsername(username)
             .then(x => {
                 setTodos(x.data);
             }).catch(e => console.error(e));
@@ -80,6 +82,7 @@ const ListTodosComponent = () => {
                 </thead>
                 <tbody>
                 {
+                    todos.length > 0 ?
                     todos.map(
                         (todo, index) => {
                             return (
@@ -93,6 +96,7 @@ const ListTodosComponent = () => {
                             )
                         }
                     )
+                    : <tr><td colSpan={5}>No Todos</td></tr>
                 }
                 </tbody>
             </table>
